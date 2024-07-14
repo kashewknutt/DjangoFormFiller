@@ -1,3 +1,4 @@
+import platform
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
@@ -7,7 +8,12 @@ import time
 import os
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-chromedriver_path = os.path.join(script_dir, 'chromedriver', 'chromedriver.exe')
+if platform.system() == 'Windows':
+    chromedriver_path = os.path.join(script_dir, 'chromedriver', 'chromedriver.exe')
+elif platform.system() == 'Darwin':  # macOS
+    chromedriver_path = os.path.join(script_dir, 'chromedriver', 'chromedriver')
+else:  # Linux and other UNIX-like systems
+    chromedriver_path = os.path.join(script_dir, 'chromedriver', 'chromedriver')
 
 service = Service(chromedriver_path)
 driver = webdriver.Chrome(service=service)
