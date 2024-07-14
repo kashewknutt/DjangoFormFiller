@@ -6,8 +6,10 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 import os
 
+script_dir = os.path.dirname(os.path.abspath(__file__))
+chromedriver_path = os.path.join(script_dir, 'chromedriver', 'chromedriver.exe')
 
-service = Service('E:/Github/DjangoFormFiller/formFiller/main/scripts/chromedriver/chromedriver.exe')  # Update this path to the location of your chromedriver
+service = Service(chromedriver_path)
 driver = webdriver.Chrome(service=service)
 
 # Open the Google form
